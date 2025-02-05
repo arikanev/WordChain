@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 
 export default function AddWord() {
   const [word, setWord] = useState('')
@@ -10,7 +10,6 @@ export default function AddWord() {
   const [expired, setExpired] = useState(false)
   const [shareableLink, setShareableLink] = useState('')
   const params = useParams()
-  const router = useRouter()
 
   useEffect(() => {
     const fetchStory = async () => {

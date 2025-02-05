@@ -27,7 +27,7 @@ export default function StoryList() {
     <div className="mt-12 max-w-4xl mx-auto">
       <h2 className="text-3xl font-bold mb-6 text-center">Recent Stories</h2>
       <div className="space-y-6">
-        {stories.map((story, storyIndex) => (
+        {stories.map((story) => (
           <div key={story.id} className="story-card p-6">
             <div className="flex flex-wrap gap-2 mb-4">
               {story.words.map((word, index) => (
