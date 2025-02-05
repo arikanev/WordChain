@@ -3,19 +3,13 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-type Props = {
-  params: {
-    id: string
-  }
-}
-
 export async function GET(
   request: NextRequest,
-  context: Props
+  { params }: { params: { id: string } }
 ) {
   try {
     const story = await prisma.story.findUnique({
-      where: { id: context.params.id },
+      where: { id: params.id },
       include: {
         words: {
           select: { text: true },
