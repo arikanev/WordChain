@@ -3,19 +3,107 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --background: #f8fafc;
+  --card: #ffffff;
+  --text: #1e293b;
+  --text-secondary: #64748b;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --text-secondary: #94a3b8;
   }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  min-height: 100vh;
 }
+
+.word-animation {
+  animation: floatIn 0.5s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes floatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.story-card {
+  background: var(--card);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  transition: all 0.2s ease;
+  color: var(--text);
+}
+
+.story-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.word-orb {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+  color: white;
+  border-radius: 999px;
+  margin: 0 0.25rem;
+  box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.word-chain {
+  position: relative;
+  padding: 2rem;
+  margin: 2rem 0;
+  background: var(--background);
+  border-radius: 1rem;
+  border: 1px solid var(--text-secondary);
+}
+
+.word-chain::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-hover));
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/* Add styles for form inputs */
+input[type="text"] {
+  color: var(--text);
+  background-color: var(--background);
+  border-color: var(--text-secondary);
+}
+
+input[type="text"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--card);
+}
+
+/* Add styles for placeholder text */
+input[type="text"]::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+} 

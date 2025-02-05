@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Story {
+  id        String   @id @default(uuid())
+  words     Word[]
+  createdAt DateTime @default(now())
+  active    Boolean  @default(true)
+}
+
+model Word {
+  id        String   @id @default(uuid())
+  text      String
+  storyId   String
+  story     Story    @relation(fields: [storyId], references: [id])
+  createdAt DateTime @default(now())
+  addedBy   String   // Store the token of who added the word
+} 
